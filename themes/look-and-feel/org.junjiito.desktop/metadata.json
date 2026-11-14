@@ -1,0 +1,13 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [ { "Name": "Junji Ito rice" } ],
+        "Category": "",
+        "Description": "Ink black, manga-paper white and one drop of blood. Tomie on the desktop, Uzumaki at boot.",
+        "Id": "org.junjiito.desktop",
+        "License": "GPLv2+",
+        "Name": "Junji Ito",
+        "Version": "1.0"
+    },
+    "X-Plasma-APIVersion": "2"
+}

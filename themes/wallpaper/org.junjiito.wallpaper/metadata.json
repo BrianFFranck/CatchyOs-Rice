@@ -1,0 +1,14 @@
+{
+    "KPackageStructure": "Plasma/Wallpaper",
+    "KPlugin": {
+        "Authors": [ { "Name": "Junji Ito rice" } ],
+        "Category": "",
+        "Description": "A different haunted video on every virtual desktop, ink-bleed transitions, and spirals that spread the longer the machine stays awake",
+        "Icon": "preferences-desktop-wallpaper",
+        "Id": "org.junjiito.wallpaper",
+        "License": "GPLv2+",
+        "Name": "Junji Ito: Haunted Desktops",
+        "Version": "1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

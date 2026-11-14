@@ -1,0 +1,14 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [ { "Name": "Junji Ito rice" } ],
+        "Category": "Date and Time",
+        "Description": "Brush-script clock with a kanji date and a line from the Junji Ito universe.",
+        "Icon": "clock",
+        "Id": "org.junjiito.clock",
+        "License": "GPL-2.0+",
+        "Name": "Ito Clock",
+        "Version": "1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

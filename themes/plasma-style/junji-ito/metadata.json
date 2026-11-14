@@ -1,0 +1,16 @@
+{
+  "KPlugin": {
+    "Authors": [
+      {
+        "Name": "Junji Ito rice"
+      }
+    ],
+    "Category": "",
+    "Description": "Ink-black manga panels, screentone corners, an Uzumaki busy spiral",
+    "Id": "junji-ito",
+    "License": "LGPL-2.1+ (shadows derived from Breeze)",
+    "Name": "Junji Ito",
+    "Version": "1.0"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0"
+}

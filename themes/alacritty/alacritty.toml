@@ -1,0 +1,67 @@
+# Junji Ito: ink black, manga-paper white, one drop of blood.
+[general]
+live_config_reload = true
+
+[window]
+padding = { x = 16, y = 14 }
+dynamic_padding = true
+opacity = 0.93
+blur = true
+decorations = "Full"
+title = "terminal"
+
+[font]
+size = 11.0
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+blink_interval = 600
+unfocused_hollow = true
+
+[selection]
+save_to_clipboard = false
+
+[colors.primary]
+background = "#070707"
+foreground = "#d9d7d2"
+bright_foreground = "#f5f3ee"
+dim_foreground = "#8c8c8c"
+
+[colors.cursor]
+text = "#070707"
+cursor = "#d9d7d2"
+
+[colors.selection]
+text = "#070707"
+background = "#d9d7d2"
+
+[colors.search.matches]
+foreground = "#070707"
+background = "#a39d8c"
+
+[colors.search.focused_match]
+foreground = "#f5f3ee"
+background = "#8f1d1d"
+
+[colors.normal]
+black   = "#101010"
+red     = "#8f1d1d"
+green   = "#8a8a8a"
+yellow  = "#a39d8c"
+blue    = "#6e6e6e"
+magenta = "#7d6f6f"
+cyan    = "#9aa0a0"
+white   = "#c8c6c1"
+
+[colors.bright]
+black   = "#464646"
+red     = "#b52a2a"
+green   = "#b0b0b0"
+yellow  = "#c9c3b2"
+blue    = "#9a9a9a"
+magenta = "#a39494"
+cyan    = "#c2c8c8"
+white   = "#f2f0eb"

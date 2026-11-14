@@ -1,0 +1,25 @@
+/* Uzumaki girl, faint ink lines behind the code (bottom-right of the editor area).
+   Tweak opacity / size here, then re-run: sudo vscode/install-vscode-bg.sh */
+.monaco-workbench .part.editor > .content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: url("@UZUMAKI_GHOST@") no-repeat right 48px bottom 32px / auto min(80%, 820px);
+  opacity: 0.11;
+  mix-blend-mode: lighten;
+}
+
+/* the girl replaces the VS Code logo in empty editor groups */
+.monaco-workbench .part.editor > .content .editor-group-container > .editor-group-letterpress {
+  display: none !important;
+}
+
+/* typewriter labels: tabs, side bar and panel titles */
+.monaco-workbench .part.editor > .content .tabs-container > .tab .label-name,
+.monaco-workbench .pane-header > .title,
+.monaco-workbench .part > .title > .title-label h2 {
+  font-family: "Special Elite", "JetBrainsMono Nerd Font", monospace !important;
+  letter-spacing: 0.02em;
+}

@@ -1,0 +1,51 @@
+# Junji Ito GRUB theme: Uzumaki on the right, a typewritten menu on the left.
+title-text: ""
+desktop-image: "background.png"
+desktop-image-scale-method: "crop"
+desktop-color: "#000000"
+terminal-font: "JetBrainsMono NF Regular 16"
+terminal-box: "terminal_box_*.png"
+terminal-left: "10%"
+terminal-top: "10%"
+terminal-width: "80%"
+terminal-height: "80%"
+
++ boot_menu {
+  left = 150
+  top = 330
+  width = 700
+  height = 430
+  item_font = "Special Elite Regular 26"
+  selected_item_font = "Special Elite Regular 26"
+  item_color = "#5e5e5e"
+  selected_item_color = "#f2f0eb"
+  item_height = 46
+  item_padding = 18
+  item_spacing = 8
+  icon_width = 0
+  icon_height = 0
+  item_icon_space = 0
+  selected_item_pixmap_style = "select_*.png"
+  scrollbar = false
+}
+
++ label {
+  id = "__timeout__"
+  left = 150
+  top = 800
+  width = 700
+  height = 30
+  text = "the spiral opens in %d seconds"
+  font = "Special Elite Regular 18"
+  color = "#6a6a6a"
+}
+
++ label {
+  left = 150
+  top = 1010
+  width = 900
+  height = 30
+  text = "up / down  choose      enter  wake      e  edit      c  console"
+  font = "Special Elite Regular 18"
+  color = "#3e3e3e"
+}

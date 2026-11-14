@@ -1,0 +1,9 @@
+[Sound Theme]
+Name=Junji Ito
+Comment=Ink drips, creaking wood, a heartbeat and a temple bell in the dark
+Inherits=ocean
+Directories=stereo
+Example=theme-demo
+
+[stereo]
+OutputProfile=stereo

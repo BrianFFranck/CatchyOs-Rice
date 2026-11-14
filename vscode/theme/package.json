@@ -1,0 +1,19 @@
+{
+  "name": "junji-ito-theme",
+  "displayName": "Junji Ito",
+  "description": "Ink black, manga-paper white, one drop of blood. Matches the junji-ito-rice desktop.",
+  "version": "1.0.0",
+  "publisher": "junji-ito-rice",
+  "license": "MIT",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Junji Ito",
+        "uiTheme": "vs-dark",
+        "path": "./themes/junji-ito-color-theme.json"
+      }
+    ]
+  }
+}

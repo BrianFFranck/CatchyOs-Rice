@@ -1,0 +1,106 @@
+# Junji Ito Plymouth theme: Uzumaki art fades in, a spiral turns beneath it,
+# a hairline thread fills as the system boots.
+
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+sw = Window.GetWidth();
+sh = Window.GetHeight();
+ox = Window.GetX();
+oy = Window.GetY();
+
+# ---- the art -------------------------------------------------------------
+art_src = Image("uzumaki.png");
+art_scale = (sh * 0.72) / art_src.GetHeight();
+art_img = art_src.Scale(art_src.GetWidth() * art_scale, art_src.GetHeight() * art_scale);
+art = Sprite(art_img);
+art_top = oy + sh * 0.07;
+art.SetPosition(ox + sw / 2 - art_img.GetWidth() / 2, art_top, 10);
+art.SetOpacity(0);
+
+# ---- turning spiral --------------------------------------------------------
+spin_size = Math.Int(sh * 0.05);
+spin_img = Image("spiral.png").Scale(spin_size, spin_size);
+spin = Sprite(spin_img);
+spin_y = art_top + art_img.GetHeight() + sh * 0.045;
+spin.SetPosition(ox + sw / 2 - spin_size / 2, spin_y, 20);
+spin.SetOpacity(0);
+
+# ---- progress thread -------------------------------------------------------
+bar_w = sw * 0.18;
+bar_x = ox + sw / 2 - bar_w / 2;
+bar_y = spin_y + spin_size + sh * 0.035;
+bar_bg = Sprite(Image("dot-dim.png").Scale(bar_w, 1));
+bar_bg.SetPosition(bar_x, bar_y, 20);
+bar_bg.SetOpacity(0);
+bar_fg_src = Image("dot.png");
+bar_fg = Sprite();
+bar_fg.SetPosition(bar_x, bar_y, 21);
+
+t = 0;
+progress = 0;
+
+fun refresh_callback() {
+    t++;
+    o = Math.Min(t / 70, 1);
+    art.SetOpacity(o);
+    spin.SetOpacity(o * 0.85);
+    bar_bg.SetOpacity(o);
+    spin.SetImage(spin_img.Rotate(0 - t * 0.045));
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+fun progress_callback(duration, p) {
+    if (p > progress) progress = p;
+    w = Math.Int(bar_w * progress);
+    if (w < 1) w = 1;
+    bar_fg.SetImage(bar_fg_src.Scale(w, 1));
+}
+Plymouth.SetBootProgressFunction(progress_callback);
+
+# ---- password / questions --------------------------------------------------
+prompt_sprite = Sprite();
+bullets_sprite = Sprite();
+prompt_sprite.SetZ(30);
+bullets_sprite.SetZ(30);
+
+fun show_prompt(text, bullets_text) {
+    p_img = Image.Text(text, 0.55, 0.55, 0.55, 1);
+    prompt_sprite.SetImage(p_img);
+    prompt_sprite.SetPosition(ox + sw / 2 - p_img.GetWidth() / 2, bar_y + sh * 0.03, 30);
+    b_img = Image.Text(bullets_text, 0.89, 0.88, 0.86, 1);
+    bullets_sprite.SetImage(b_img);
+    bullets_sprite.SetPosition(ox + sw / 2 - b_img.GetWidth() / 2, bar_y + sh * 0.03 + p_img.GetHeight() + 10, 30);
+    prompt_sprite.SetOpacity(1);
+    bullets_sprite.SetOpacity(1);
+}
+
+fun display_password_callback(prompt, bullets) {
+    s = "";
+    for (i = 0; i < bullets; i++) s = s + "*";
+    if (s == "") s = " ";
+    if (prompt == "") prompt = "speak the word";
+    show_prompt(prompt, s);
+}
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+
+fun display_question_callback(prompt, entry) {
+    show_prompt(prompt, entry + " ");
+}
+Plymouth.SetDisplayQuestionFunction(display_question_callback);
+
+fun display_normal_callback() {
+    prompt_sprite.SetOpacity(0);
+    bullets_sprite.SetOpacity(0);
+}
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+
+# ---- boot messages (bottom, faint) -----------------------------------------
+msg_sprite = Sprite();
+msg_sprite.SetZ(30);
+fun message_callback(text) {
+    m_img = Image.Text(text, 0.35, 0.35, 0.35, 1);
+    msg_sprite.SetImage(m_img);
+    msg_sprite.SetPosition(ox + sw / 2 - m_img.GetWidth() / 2, oy + sh * 0.95, 30);
+}
+Plymouth.SetMessageFunction(message_callback);

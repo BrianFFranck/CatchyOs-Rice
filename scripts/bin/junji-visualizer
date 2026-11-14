@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# junji-visualizer [on|off|toggle|status]
+# Two vertical audio waves (Plasma Audio Visualizer) along the left and right edges
+# of the desktop, flanking Tomie. "off" removes the widgets entirely (cava stops too);
+# "on" puts them back with the Junji Ito look. Default action: toggle.
+set -euo pipefail
+MODE=${1:-toggle}
+PLUGIN=luisbocanegra.audio.visualizer
+
+if ! { kpackagetool6 -t Plasma/Applet -l; kpackagetool6 -t Plasma/Applet -l -g; } 2>/dev/null | grep -qx "$PLUGIN"; then
+  notify-send -a "Junji Ito" -i "$HOME/.local/share/junji-ito-rice/junji-visualizer.svg" \
+    "Audio visualizer not installed" "Run install-system.sh from the junji-ito-rice folder first." || true
+  echo "plasma6-applets-audio-visualizer is not installed" >&2
+  exit 1
+fi
+
+read -r -d '' JS <<EOF || true
+var MODE = "$MODE", PLUGIN = "$PLUGIN";
+var line = { enabled: true, sourceType: 0, custom: "#e4e2dd", alpha: 0.85,
+             lightness: 0.5, saturation: 0.5, systemColor: "textColor", systemColorSet: "View",
+             list: ["#e4e2dd"], reverseList: false, followColor: 0, saturationEnabled: false,
+             lightnessEnabled: false, smoothGradient: true, colorsOrientation: 0,
+             image: { source: "", fillMode: 2 }, hueStart: 0, hueEnd: 360 };
+var fill = JSON.parse(JSON.stringify(line)); fill.custom = "#d9d7d2"; fill.alpha = 0.10;
+
+function ours() {
+    var found = [];
+    var ds = desktops();
+    for (var i = 0; i < ds.length; i++) {
+        var ws = ds[i].widgets(PLUGIN);
+        for (var j = 0; j < ws.length; j++) found.push(ws[j]);
+    }
+    return found;
+}
+function add(d, side) {
+    var g = screenGeometry(d.screen);
+    var w = Math.round(g.width * 0.16), h = Math.round(g.height * 0.58);
+    var y = Math.round(g.height * 0.33);
+    var x = side === "left" ? 0 : g.width - w;
+    var v = d.addWidget(PLUGIN, x, y, w, h);
+    v.currentConfigGroup = ["General"];
+    v.writeConfig("visualizerStyle", 1);           // wave
+    v.writeConfig("orientation", side === "left" ? 2 : 3); // anchored to the screen edge
+    v.writeConfig("waveMode", 0);                  // smooth curve
+    v.writeConfig("fillWave", true);
+    v.writeConfig("barGap", 6);
+    v.writeConfig("barWidth", 2);
+    v.writeConfig("barColors", JSON.stringify(line));
+    v.writeConfig("waveFillColors", JSON.stringify(fill));
+    v.writeConfig("desktopWidgetBg", 0);           // no background
+    v.writeConfig("disableLeftClick", true);
+    v.writeConfig("hideToolTip", true);
+    v.writeConfig("framerate", 60);
+    v.writeConfig("noiseReduction", 80);
+    v.writeConfig("waves", true);
+    v.writeConfig("outputChannels", "mono");
+    v.writeConfig("pauseOnMaximizedWindow", true);
+    v.writeConfig("_stopCava", false);
+}
+var existing = ours();
+var want = MODE === "on" ? true : MODE === "off" ? false : MODE === "status" ? null : existing.length === 0;
+if (want === true && existing.length === 0) {
+    var ds = desktopsForActivity(currentActivity());
+    for (var i = 0; i < ds.length; i++) { add(ds[i], "left"); add(ds[i], "right"); }
+} else if (want === false) {
+    for (var k = 0; k < existing.length; k++) existing[k].remove();
+}
+print(ours().length > 0 ? "on" : "off");
+EOF
+
+STATE=$(qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "$JS")
+if [ "$MODE" != status ]; then
+  if [ "$STATE" = on ]; then MSG="the waves are listening"; else MSG="silence"; fi
+  notify-send -a "Junji Ito" -i "$HOME/.local/share/junji-ito-rice/junji-visualizer.svg" -t 1800 \
+    "Visualizer $STATE" "$MSG" || true
+fi
+echo "$STATE"

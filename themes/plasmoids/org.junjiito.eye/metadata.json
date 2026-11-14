@@ -1,0 +1,14 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [ { "Name": "Junji Ito rice" } ],
+        "Category": "Fun and Games",
+        "Description": "An eye that wanders, blinks, watches your cursor and flinches when touched.",
+        "Icon": "view-visible",
+        "Id": "org.junjiito.eye",
+        "License": "GPL-2.0+",
+        "Name": "Ito Eye",
+        "Version": "1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

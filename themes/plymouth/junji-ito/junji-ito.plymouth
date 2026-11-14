@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Junji Ito
+Description=Uzumaki: the spiral art fades in out of the dark while a spiral turns beneath it.
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/junji-ito
+ScriptFile=/usr/share/plymouth/themes/junji-ito/junji-ito.script

@@ -1,0 +1,21 @@
+{
+  "KPackageStructure": "KWin/Effect",
+  "KPlugin": {
+     "Name": "Uzumaki (Junji Ito)",
+     "Description": "Windows open with a paper-white TV glitch and close by winding into an inked spiral",
+     "Icon": "preferences-system-windows-effect",
+     "Category": "Window Open/Close Animation",
+     "Authors": [
+        { "Name": "Junji Ito rice" },
+        { "Name": "Simon Schneegans (Burn-My-Windows shaders)", "Email": "code@simonschneegans.de" }
+     ],
+     "Id": "kwin6_effect_junji_uzumaki",
+     "License": "GPLv3",
+     "Version": "1.0",
+     "EnabledByDefault": false
+  },
+  "X-KDE-Ordering": "60",
+  "X-KWin-Exclusive-Category": "toplevel-open-close-animation",
+  "X-Plasma-API": "javascript",
+  "X-Plasma-MainScript": "code/main.js"
+}

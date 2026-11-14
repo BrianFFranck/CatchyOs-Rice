@@ -1,0 +1,14 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [ { "Name": "Junji Ito rice" } ],
+        "Category": "System Information",
+        "Description": "CPU, temperature, memory, GPU and network in ink. Turns blood red when the machine runs a fever.",
+        "Icon": "utilities-system-monitor",
+        "Id": "org.junjiito.vitals",
+        "License": "GPL-2.0+",
+        "Name": "Ito Vitals",
+        "Version": "1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

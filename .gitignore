@@ -1,0 +1,11 @@
+# build intermediates (scripts/build-assets.sh and build-desktops.sh recreate them)
+assets/build/
+assets/desktops/1-tomie.mp4
+src/remina/pass1.png
+src/remina/pass2.png
+src/remina/seeded.png
+src/remina/clean.png
+# locally built package for one KWin version (install-system.sh builds a fresh one)
+packages/*.pkg.tar.zst
+__pycache__/
+*.pyc
